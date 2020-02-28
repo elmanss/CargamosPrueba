@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS movie (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  overview TEXT NOT NULL,
+  poster_path TEXT NOT NULL,
+  vote_avg REAL NOT NULL);
+
+CREATE INDEX IF NOT EXISTS title ON movie(title);
+
+insertMovie:
+INSERT INTO movie (title, overview, poster_path, vote_avg) VALUES (?,?,?,?);
+
+selectAll:
+SELECT * FROM movie;
+
+selectByTitle:
+SELECT * FROM movie WHERE title LIKE ('%' || :title || '%');
+
+deleteMovie:
+DELETE FROM movie WHERE id= ?;
+
+lastInsertRowId:
+SELECT last_insert_rowid();

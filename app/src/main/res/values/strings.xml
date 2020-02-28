@@ -1,0 +1,12 @@
+<resources>
+  <string name="app_name">Cargamos Prueba</string>
+  <string name="txt_filtrar_hint">Filtrar por título</string>
+  <string name="txt_favoritas_title">Mis favoritas</string>
+  <string name="txt_main_title">Películas</string>
+  <string name="txt_detail_grade">Calificación: %s</string>
+  <string name="txt_splash_desc">Logotipo cargamos</string>
+  <string name="txt_img_poster_desc">Imagen pequeña poster película</string>
+  <string name="txt_img_poster_big_desc">Imagen grande poster pelicula</string>
+  <string name="txt_msg_detail_save">"La película se ha agregado a tus favoritas"</string>
+  <string name="txt_msg_detail_delete">La película se ha eliminado de tus favoritas</string>
+</resources>

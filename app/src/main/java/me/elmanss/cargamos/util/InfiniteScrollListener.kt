@@ -6,6 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  * CGS on 27/02/20.
+ *
+ * Esta clase está basada en el el siguiente tutorial:
+ * @see <a href="https://www.nickmillward.com/android/2018/3/1/infinite-scrolling-with-recyclerview-and-unsplash-api">
+ *    Infinite Scrolling // Endlessly scroll with RecyclerView and Unsplash API by Nick Millward
+ *     </a>
+ *
  */
 abstract class InfiniteScrollListener(private val layoutManager: GridLayoutManager) :
     RecyclerView.OnScrollListener() {

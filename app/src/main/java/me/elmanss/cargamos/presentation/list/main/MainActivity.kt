@@ -119,16 +119,6 @@ class MainActivity : AppCompatActivity(),
 
     override fun clickMovie(pos: Int) {
         val movie = adapter.getItem(pos)
-        DetailActivity.start(
-            this,
-            MovieModel(
-                movie.id,
-                movie.title,
-                movie.overview,
-                movie.posterPath,
-                movie.score,
-                remote = true
-            )
-        )
+        DetailActivity.start(this, movie)
     }
 }

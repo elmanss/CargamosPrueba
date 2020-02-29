@@ -56,6 +56,7 @@ class LocalMovieInteractor(
     fun insertMovie(movieModel: MovieModel): Observable<Any> {
         return Observable.fromCallable {
             queries.insertMovie(
+                movieModel.remoteId,
                 movieModel.title,
                 movieModel.overview,
                 movieModel.posterPath,

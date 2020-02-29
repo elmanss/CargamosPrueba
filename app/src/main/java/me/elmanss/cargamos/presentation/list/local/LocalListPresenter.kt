@@ -28,6 +28,10 @@ class LocalListPresenterImpl(
         return interactor.getConfig()
     }
 
+    /*
+           Metodo que manda a llamar el query para seleccionar todas las películas en la lista de
+           favoritos. En caso de exito, notifica LocalListActivity.kt
+        */
     override fun findAllMovies(): Disposable {
         return interactor.getAllMovies().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -44,6 +48,11 @@ class LocalListPresenterImpl(
             })
     }
 
+
+    /*
+          Metodo que manda a llamar el query para seleccionar peliculas por usando un filtro.
+          En caso de exito, notifica LocalListActivity.kt
+       */
     override fun findMoviesWithPattern(str: String): Disposable {
         return if (str.isEmpty()) {
             findAllMovies()

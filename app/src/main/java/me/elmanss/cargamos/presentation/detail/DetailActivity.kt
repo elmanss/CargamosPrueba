@@ -22,8 +22,10 @@ interface DetailView : BaseView {
     fun configFloatingButton()
     fun loadImg(path: String)
     fun clickFloatingButton()
-    fun updateToLocal(id: Long)
-    fun updateToRemote()
+    fun updateToLocal(id: Long, isChecking: Boolean = false)
+    fun showAlreadyInFavs()
+    fun showMsg(msg: String)
+    fun updateToRemote(isChecking: Boolean = false)
 }
 
 class DetailActivity : AppCompatActivity(),
@@ -63,6 +65,8 @@ class DetailActivity : AppCompatActivity(),
 
         setData()
         configFloatingButton()
+
+        if (model.remote) presenter.checkIfMovieInfavs(model)
     }
 
     override fun onDestroy() {
@@ -117,17 +121,23 @@ class DetailActivity : AppCompatActivity(),
         }
     }
 
-    override fun updateToLocal(id: Long) {
-        Toast.makeText(this, R.string.txt_msg_detail_save, Toast.LENGTH_SHORT)
-            .show()
+    override fun updateToLocal(id: Long, isChecking: Boolean) {
         model = model.copy(id = id, remote = false)
         binding.detailActionButton.setImageResource(R.drawable.delete)
+        if (!isChecking) showMsg(getString(R.string.txt_msg_detail_save))
     }
 
-    override fun updateToRemote() {
-        Toast.makeText(this, R.string.txt_msg_detail_delete, Toast.LENGTH_SHORT)
-            .show()
+    override fun showAlreadyInFavs() {
+        showMsg(getString(R.string.txt_detail_fav_msg, model.title))
+    }
+
+    override fun showMsg(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun updateToRemote(isChecking: Boolean) {
         model = model.copy(remote = true)
         binding.detailActionButton.setImageResource(R.drawable.heart)
+        if (!isChecking) showMsg(getString(R.string.txt_msg_detail_delete))
     }
 }

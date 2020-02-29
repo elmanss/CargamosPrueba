@@ -27,6 +27,11 @@ class MainPresenterImpl(
         return interactor.getConfig()
     }
 
+
+    /*
+       Metodo que despacha los llamados al endpoint de peliculas paginadas en el api. En caso de que
+       la respuesta sea exitosa, notifica en MainActivity.kt
+    */
     override fun loadMoviesPaginated(page: Int): Disposable {
         view.showProgress()
 

@@ -9,6 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class MovieModel(
     val id: Long,
+    val remoteId: Long,
     val title: String,
     val overview: String,
     val posterPath: String,

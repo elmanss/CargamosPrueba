@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS movie (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  remote_id INTEGER NOT NULL UNIQUE,
   title TEXT NOT NULL,
   overview TEXT NOT NULL,
   poster_path TEXT NOT NULL,
@@ -7,14 +8,19 @@ CREATE TABLE IF NOT EXISTS movie (
 
 CREATE INDEX IF NOT EXISTS title ON movie(title);
 
+CREATE INDEX IF NOT EXISTS remote_id ON movie(remote_id);
+
 insertMovie:
-INSERT INTO movie (title, overview, poster_path, vote_avg) VALUES (?,?,?,?);
+INSERT INTO movie (remote_id,title, overview, poster_path, vote_avg) VALUES (?,?,?,?,?);
 
 selectAll:
 SELECT * FROM movie;
 
 selectByTitle:
 SELECT * FROM movie WHERE title LIKE ('%' || :title || '%');
+
+selectIdByRemoteId:
+SELECT id FROM movie WHERE remote_id = ?;
 
 deleteMovie:
 DELETE FROM movie WHERE id= ?;

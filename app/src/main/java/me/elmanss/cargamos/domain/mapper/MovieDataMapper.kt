@@ -21,6 +21,7 @@ interface MovieDataMapper {
 class MovieDataMapperImpl : MovieDataMapper {
     override fun movieModelFromNetwork(remoteMovie: RemoteMovie): MovieModel {
         return MovieModel(
+            0,
             remoteMovie.id.toLong(),
             remoteMovie.title ?: "MISSING",
             remoteMovie.overview ?: "MISSING",
@@ -32,7 +33,13 @@ class MovieDataMapperImpl : MovieDataMapper {
 
     override fun movieModelFromDb(movie: Movie): MovieModel {
         return MovieModel(
-            movie.id, movie.title, movie.overview, movie.poster_path, movie.vote_avg, false
+            movie.id,
+            movie.remote_id,
+            movie.title,
+            movie.overview,
+            movie.poster_path,
+            movie.vote_avg,
+            false
         )
     }
 

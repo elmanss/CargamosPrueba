@@ -124,16 +124,6 @@ class LocalListActivity : AppCompatActivity(),
 
     override fun clickMovie(pos: Int) {
         val movie = adapter.getItem(pos)
-        DetailActivity.start(
-            this,
-            MovieModel(
-                movie.id,
-                movie.title,
-                movie.overview,
-                movie.posterPath,
-                movie.score,
-                false
-            )
-        )
+        DetailActivity.start(this, movie)
     }
 }

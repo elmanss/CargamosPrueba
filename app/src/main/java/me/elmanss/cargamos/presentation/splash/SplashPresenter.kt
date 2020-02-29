@@ -18,6 +18,16 @@ class SplashPresenterImpl(
     val view: SplashView
 ) :
     SplashPresenter {
+
+
+
+    /*
+        Metodo que manda llamar el endpoint de descarga de configuracion del api 'themoviedb'
+        en caso de descarga exitosa, guarda los atributos en SharedPreferences y notifica SplashActivity.kt
+        para ir pantalla principal.
+
+        Si hay algun error, notifica a SplashActivity.kt, que muestra un botón para reintentar la descarga.
+     */
     override fun loadConfig(): Disposable {
         view.showProgress()
 

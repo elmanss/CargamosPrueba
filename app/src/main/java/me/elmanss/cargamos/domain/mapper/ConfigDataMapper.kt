@@ -6,7 +6,7 @@ import me.elmanss.cargamos.data.network.ConfigResult
 import me.elmanss.cargamos.domain.models.ConfigModel
 
 /**
- * ADDCEL on 28/02/20.
+ * cgs on 28/02/20.
  */
 interface ConfigDataMapper {
     fun configModelFromNetwork(configResult: ConfigResult): ConfigModel

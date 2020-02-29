@@ -8,7 +8,7 @@ import me.elmanss.cargamos.domain.models.ConfigModel
 import me.elmanss.cargamos.domain.models.MovieModel
 
 /**
- * ADDCEL on 28/02/20.
+ * cgs on 28/02/20.
  */
 class DetailInteractor(
     val queries: MovieQueries,

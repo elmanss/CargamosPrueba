@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 
 /**
- * ADDCEL on 28/02/20.
+ * cgs on 28/02/20.
  */
 
 data class LocalConfig(val baseUrl: String?, val imgSizes: String?)

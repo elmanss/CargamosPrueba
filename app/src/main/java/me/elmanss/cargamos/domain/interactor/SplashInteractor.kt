@@ -7,7 +7,7 @@ import me.elmanss.cargamos.domain.mapper.ConfigDataMapper
 import me.elmanss.cargamos.domain.models.ConfigModel
 
 /**
- * ADDCEL on 28/02/20.
+ * cgs on 28/02/20.
  */
 interface SplashInteractor {
 

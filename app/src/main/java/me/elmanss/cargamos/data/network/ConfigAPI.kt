@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 
 /**
- * ADDCEL on 28/02/20.
+ * cgs on 28/02/20.
  */
 interface ConfigAPI {
 

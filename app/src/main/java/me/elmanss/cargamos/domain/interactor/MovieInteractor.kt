@@ -3,15 +3,27 @@ package me.elmanss.cargamos.domain.interactor
 import com.squareup.sqldelight.runtime.rx.asObservable
 import io.reactivex.Observable
 import me.elmanss.cargamos.data.MovieQueries
+import me.elmanss.cargamos.data.local.ConfigRepository
 import me.elmanss.cargamos.data.network.MovieAPI
+import me.elmanss.cargamos.domain.mapper.ConfigDataMapper
 import me.elmanss.cargamos.domain.mapper.MovieDataMapper
+import me.elmanss.cargamos.domain.models.ConfigModel
 import me.elmanss.cargamos.domain.models.MovieModel
 
 
 /**
  * cgs on 27/02/20.
  */
-class NetworkMovieInteractor(val api: MovieAPI, val mapper: MovieDataMapper) {
+class NetworkMovieInteractor(
+    val api: MovieAPI,
+    val mapper: MovieDataMapper,
+    val configRepository: ConfigRepository,
+    val configDataMapper: ConfigDataMapper
+) {
+
+    fun getConfig(): ConfigModel {
+        return configDataMapper.configModelFromRepository(configRepository.getConfig())
+    }
 
     fun getMoviesPaginated(page: Int): Observable<List<MovieModel>> {
         return api.getMovies(page).flatMap {
@@ -20,7 +32,15 @@ class NetworkMovieInteractor(val api: MovieAPI, val mapper: MovieDataMapper) {
     }
 }
 
-class LocalMovieInteractor(val queries: MovieQueries, val mapper: MovieDataMapper) {
+class LocalMovieInteractor(
+    val queries: MovieQueries, val mapper: MovieDataMapper, val configRepository: ConfigRepository,
+    val configDataMapper: ConfigDataMapper
+) {
+
+    fun getConfig(): ConfigModel {
+        return configDataMapper.configModelFromRepository(configRepository.getConfig())
+    }
+
     fun getAllMovies(): Observable<List<MovieModel>> {
         return queries.selectAll().asObservable().flatMap {
             Observable.fromCallable { mapper.movieModelListFromDb(it.executeAsList()) }

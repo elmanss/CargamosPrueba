@@ -1,14 +1,14 @@
 package me.elmanss.cargamos.presentation.list.local
 
-import android.content.SharedPreferences
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
 import me.elmanss.cargamos.Database
 import me.elmanss.cargamos.data.MovieQueries
+import me.elmanss.cargamos.data.local.ConfigRepository
 import me.elmanss.cargamos.di.scope.PerActivity
 import me.elmanss.cargamos.domain.interactor.LocalMovieInteractor
+import me.elmanss.cargamos.domain.mapper.ConfigDataMapper
 import me.elmanss.cargamos.domain.mapper.MovieDataMapper
 import me.elmanss.cargamos.domain.mapper.MovieDataMapperImpl
 
@@ -39,24 +39,27 @@ class LocalListModule(val activity: LocalListActivity) {
 
     @PerActivity
     @Provides
-    fun provideInteractor(queries: MovieQueries, mapper: MovieDataMapper): LocalMovieInteractor {
+    fun provideInteractor(
+        queries: MovieQueries,
+        mapper: MovieDataMapper,
+        configRepository: ConfigRepository,
+        configDataMapper: ConfigDataMapper
+    ): LocalMovieInteractor {
         return LocalMovieInteractor(
             queries,
-            mapper
+            mapper,
+            configRepository,
+            configDataMapper
         )
     }
 
     @PerActivity
     @Provides
     fun providePresenter(
-        interactor: LocalMovieInteractor,
-        preferences: SharedPreferences,
-        gson: Gson
+        interactor: LocalMovieInteractor
     ): LocalListPresenter {
         return LocalListPresenterImpl(
             interactor,
-            preferences,
-            gson,
             activity
         )
     }

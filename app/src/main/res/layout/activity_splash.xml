@@ -10,10 +10,34 @@
       android:id="@+id/imageView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:contentDescription="@string/txt_splash_desc"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/ft_contact_logo"
-      android:contentDescription="@string/txt_splash_desc" />
+      app:srcCompat="@drawable/ft_contact_logo" />
+
+
+  <TextView
+      android:id="@+id/splash_progress_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/txt_splash_progress"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+  <Button
+      android:id="@+id/b_splash_retry"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/txt_splash_progress"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/imageView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

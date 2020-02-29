@@ -10,6 +10,10 @@ import com.squareup.sqldelight.db.SqlDriver
 import dagger.Module
 import dagger.Provides
 import me.elmanss.cargamos.Database
+import me.elmanss.cargamos.data.local.ConfigRepository
+import me.elmanss.cargamos.data.local.ConfigRepositoryImpl
+import me.elmanss.cargamos.domain.mapper.ConfigDataMapper
+import me.elmanss.cargamos.domain.mapper.ConfigDataMapperImpl
 import javax.inject.Singleton
 
 
@@ -31,6 +35,13 @@ class AppModule(private val mApplication: Application) {
         return PreferenceManager.getDefaultSharedPreferences(application)
     }
 
+
+    @Singleton
+    @Provides
+    fun provideConfigRepo(sharedPreferences: SharedPreferences): ConfigRepository {
+        return ConfigRepositoryImpl(sharedPreferences)
+    }
+
     @Provides
     @Singleton
     fun provideSqlDriver(application: Application): SqlDriver {
@@ -49,5 +60,12 @@ class AppModule(private val mApplication: Application) {
     fun provideGson(): Gson {
         val gsonBuilder = GsonBuilder()
         return gsonBuilder.create()
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideConfigDataMapper(gson: Gson): ConfigDataMapper {
+        return ConfigDataMapperImpl(gson)
     }
 }

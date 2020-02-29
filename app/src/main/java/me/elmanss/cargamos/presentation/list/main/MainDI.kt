@@ -1,13 +1,13 @@
 package me.elmanss.cargamos.presentation.list.main
 
-import android.content.SharedPreferences
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
+import me.elmanss.cargamos.data.local.ConfigRepository
 import me.elmanss.cargamos.data.network.MovieAPI
 import me.elmanss.cargamos.di.scope.PerActivity
 import me.elmanss.cargamos.domain.interactor.NetworkMovieInteractor
+import me.elmanss.cargamos.domain.mapper.ConfigDataMapper
 import me.elmanss.cargamos.domain.mapper.MovieDataMapper
 import me.elmanss.cargamos.domain.mapper.MovieDataMapperImpl
 
@@ -17,7 +17,6 @@ import me.elmanss.cargamos.domain.mapper.MovieDataMapperImpl
 @Module
 class MainModule(val activity: MainActivity) {
 
-
     @PerActivity
     @Provides
     fun provideMapper(): MovieDataMapper {
@@ -26,24 +25,25 @@ class MainModule(val activity: MainActivity) {
 
     @PerActivity
     @Provides
-    fun provideInteractor(api: MovieAPI, mapper: MovieDataMapper): NetworkMovieInteractor {
+    fun provideInteractor(
+        api: MovieAPI, mapper: MovieDataMapper,
+        configRepository: ConfigRepository, configDataMapper: ConfigDataMapper
+    ): NetworkMovieInteractor {
         return NetworkMovieInteractor(
             api,
-            mapper
+            mapper,
+            configRepository,
+            configDataMapper
         )
     }
 
     @PerActivity
     @Provides
     fun providePresenter(
-        interactor: NetworkMovieInteractor,
-        gson: Gson,
-        preferences: SharedPreferences
+        interactor: NetworkMovieInteractor
     ): MainPresenter {
         return MainPresenterImpl(
             interactor,
-            gson,
-            preferences,
             activity
         )
     }

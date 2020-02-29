@@ -4,8 +4,8 @@ package me.elmanss.cargamos.util
  * cgs on 25/02/20.
  */
 object Constants {
-    const val KEY_SECURE_URL = "me.elmanss.cargamos.secure_url"
-    const val KEY_POSTER_SIZES = "me.elmanss.cargamos.poster_sizes"
+    const val ERROR_SPLASH_CONFIG =
+        "Ocurrió un error al actualizar configuración de la aplicación. Por favor, intenta de nuevo."
 
     const val ERROR_LIST_LOCAL_LOAD = "Ocurrió un error al buscar tus películas favoritas."
     const val ERROR_LIST_LOCAL_FILTER =

@@ -44,10 +44,11 @@
 
       <ImageView
           android:id="@+id/detail_poster"
-          android:contentDescription="@string/txt_img_poster_big_desc"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:layout_width="@dimen/poster_detail_width"
+          android:layout_height="@dimen/poster_detail_height"
           android:layout_gravity="center_horizontal"
+          android:contentDescription="@string/txt_img_poster_big_desc"
+          android:scaleType="centerInside"
           android:src="@mipmap/ic_launcher_round" />
 
       <TextView

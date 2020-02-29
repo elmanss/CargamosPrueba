@@ -22,9 +22,9 @@ class MovieDataMapperImpl : MovieDataMapper {
     override fun movieModelFromNetwork(remoteMovie: RemoteMovie): MovieModel {
         return MovieModel(
             remoteMovie.id.toLong(),
-            remoteMovie.title,
-            remoteMovie.overview,
-            remoteMovie.posterPath,
+            remoteMovie.title ?: "MISSING",
+            remoteMovie.overview ?: "MISSING",
+            remoteMovie.posterPath ?: "MISSING",
             remoteMovie.voteAverage,
             true
         )

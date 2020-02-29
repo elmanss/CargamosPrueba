@@ -86,10 +86,7 @@ class LocalListActivity : AppCompatActivity(),
     }
 
     override fun configList() {
-        adapter = MovieAdapter(
-            presenter.getPosterBaseUrl(),
-            presenter.getSizeList()
-        )
+        adapter = MovieAdapter(presenter.getConfig())
         binding.recyclerLocalList.adapter = adapter
         binding.recyclerLocalList.layoutManager = GridLayoutManager(this, 3)
 

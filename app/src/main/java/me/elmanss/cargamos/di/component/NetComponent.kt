@@ -7,7 +7,6 @@ import me.elmanss.cargamos.presentation.detail.DetailModule
 import me.elmanss.cargamos.presentation.detail.DetailSubcomponent
 import me.elmanss.cargamos.presentation.list.local.LocalListModule
 import me.elmanss.cargamos.presentation.list.local.LocalListSubcomponent
-import me.elmanss.cargamos.presentation.list.main.MainActivity
 import me.elmanss.cargamos.presentation.list.main.MainModule
 import me.elmanss.cargamos.presentation.list.main.MainSubcomponent
 import me.elmanss.cargamos.presentation.splash.SplashModule

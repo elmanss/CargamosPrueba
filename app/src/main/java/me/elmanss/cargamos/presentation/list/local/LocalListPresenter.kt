@@ -1,11 +1,10 @@
 package me.elmanss.cargamos.presentation.list.local
 
-import android.content.SharedPreferences
-import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import me.elmanss.cargamos.domain.interactor.LocalMovieInteractor
+import me.elmanss.cargamos.domain.models.ConfigModel
 import me.elmanss.cargamos.util.Constants
 
 /**
@@ -13,9 +12,7 @@ import me.elmanss.cargamos.util.Constants
  */
 interface LocalListPresenter {
 
-    fun getSizeList(): List<String>
-
-    fun getPosterBaseUrl(): String
+    fun getConfig(): ConfigModel
 
     fun findAllMovies(): Disposable
 
@@ -24,17 +21,11 @@ interface LocalListPresenter {
 
 class LocalListPresenterImpl(
     val interactor: LocalMovieInteractor,
-    val preferences: SharedPreferences,
-    val gson: Gson,
     val view: LocalListView
 ) : LocalListPresenter {
-    override fun getSizeList(): List<String> {
-        val str = preferences.getString(Constants.KEY_POSTER_SIZES, "")!!
-        return gson.fromJson(str, Array<String>::class.java).asList()
-    }
 
-    override fun getPosterBaseUrl(): String {
-        return preferences.getString(Constants.KEY_SECURE_URL, "")!!
+    override fun getConfig(): ConfigModel {
+        return interactor.getConfig()
     }
 
     override fun findAllMovies(): Disposable {

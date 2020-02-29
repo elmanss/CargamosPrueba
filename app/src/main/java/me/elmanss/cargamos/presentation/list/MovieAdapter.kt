@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import me.elmanss.cargamos.R
+import me.elmanss.cargamos.domain.models.ConfigModel
 import me.elmanss.cargamos.domain.models.MovieModel
 import timber.log.Timber
 
@@ -14,7 +15,7 @@ import timber.log.Timber
  * Recibe como parametros la url base obtenida en el consumo del Configuration API y la lista de clave de
  * tamaños posibles de la imagen
  */
-class MovieAdapter(private val baseUrl: String, private val sizeSet: List<String>) :
+class MovieAdapter(private val configModel: ConfigModel) :
     RecyclerView.Adapter<ViewHolder>() {
 
     private val movies = mutableListOf<MovieModel>()
@@ -45,11 +46,12 @@ class MovieAdapter(private val baseUrl: String, private val sizeSet: List<String
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val url = baseUrl + sizeSet.elementAt(2) + movies[position].posterPath
+        val url = configModel.baseUrl + configModel.imgSizes[2] + movies[position].posterPath
         Timber.d("Url: %s", url)
 
         Picasso.get().load(url)
             .resizeDimen(R.dimen.poster_width, R.dimen.poster_height_placeholder)
+            .error(R.drawable.heart_broken_outline)
             .into(holder.poster)
     }
 

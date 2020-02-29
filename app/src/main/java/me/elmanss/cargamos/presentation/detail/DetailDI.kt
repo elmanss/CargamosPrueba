@@ -1,16 +1,14 @@
 package me.elmanss.cargamos.presentation.detail
 
-import android.content.SharedPreferences
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
 import me.elmanss.cargamos.Database
 import me.elmanss.cargamos.data.MovieQueries
+import me.elmanss.cargamos.data.local.ConfigRepository
 import me.elmanss.cargamos.di.scope.PerActivity
-import me.elmanss.cargamos.domain.interactor.LocalMovieInteractor
-import me.elmanss.cargamos.domain.mapper.MovieDataMapper
-import me.elmanss.cargamos.domain.mapper.MovieDataMapperImpl
+import me.elmanss.cargamos.domain.interactor.DetailInteractor
+import me.elmanss.cargamos.domain.mapper.ConfigDataMapper
 import me.elmanss.cargamos.domain.models.MovieModel
 
 /**
@@ -32,33 +30,27 @@ class DetailModule(val activity: DetailActivity) {
         return database.movieQueries
     }
 
-
     @PerActivity
     @Provides
-    fun provideMapper(): MovieDataMapper {
-        return MovieDataMapperImpl()
-    }
-
-    @PerActivity
-    @Provides
-    fun provideInteractor(queries: MovieQueries, mapper: MovieDataMapper): LocalMovieInteractor {
-        return LocalMovieInteractor(
+    fun provideInteractor(
+        queries: MovieQueries,
+        repository: ConfigRepository,
+        configDataMapper: ConfigDataMapper
+    ): DetailInteractor {
+        return DetailInteractor(
             queries,
-            mapper
+            repository,
+            configDataMapper
         )
     }
 
     @PerActivity
     @Provides
     fun providePresenter(
-        interactor: LocalMovieInteractor,
-        preferences: SharedPreferences,
-        gson: Gson
+        interactor: DetailInteractor
     ): DetailPresenter {
         return DetailPresenterImpl(
             interactor,
-            preferences,
-            gson,
             activity
         )
     }

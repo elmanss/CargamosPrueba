@@ -11,15 +11,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.disposables.CompositeDisposable
 import me.elmanss.cargamos.CargamosApplication
-import me.elmanss.cargamos.presentation.detail.DetailActivity
-import me.elmanss.cargamos.presentation.list.MovieAdapter
-import me.elmanss.cargamos.util.Constants
-import me.elmanss.cargamos.util.ItemClickSupport
 import me.elmanss.cargamos.R
 import me.elmanss.cargamos.databinding.ActivityMainBinding
 import me.elmanss.cargamos.domain.models.MovieModel
+import me.elmanss.cargamos.presentation.detail.DetailActivity
+import me.elmanss.cargamos.presentation.list.MovieAdapter
 import me.elmanss.cargamos.presentation.list.local.LocalListActivity
 import me.elmanss.cargamos.util.InfiniteScrollListener
+import me.elmanss.cargamos.util.ItemClickSupport
 import javax.inject.Inject
 
 interface MainView {
@@ -34,8 +33,8 @@ class MainActivity : AppCompatActivity(),
     MainView {
 
     lateinit var binding: ActivityMainBinding
-    lateinit var adapter: MovieAdapter
     lateinit var scrollListener: InfiniteScrollListener
+    lateinit var adapter: MovieAdapter
 
     @Inject
     lateinit var prefs: SharedPreferences
@@ -93,13 +92,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun configList() {
-        adapter = MovieAdapter(
-            prefs.getString(
-                Constants.KEY_SECURE_URL,
-                ""
-            )!!,
-            presenter.getSizeList()
-        )
+        adapter = MovieAdapter(presenter.getConfig())
 
         binding.mainRecycler.adapter = adapter
         binding.mainRecycler.hasFixedSize()

@@ -9,13 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import io.reactivex.disposables.CompositeDisposable
 import me.elmanss.cargamos.CargamosApplication
-import timber.log.Timber
-import javax.inject.Inject
-
 import me.elmanss.cargamos.R
 import me.elmanss.cargamos.databinding.ActivityDetailBinding
 import me.elmanss.cargamos.domain.models.MovieModel
 import me.elmanss.cargamos.presentation.BaseView
+import timber.log.Timber
+import javax.inject.Inject
 
 
 interface DetailView : BaseView {
@@ -105,7 +104,9 @@ class DetailActivity : AppCompatActivity(),
     override fun loadImg(path: String) {
         val fullPath = presenter.getPosterUrl(path)
         Timber.d("PATH POSTER: %s", fullPath)
-        Picasso.get().load(fullPath).into(binding.detailPoster)
+        Picasso.get().load(fullPath).error(R.drawable.heart_broken_outline)
+            .resizeDimen(R.dimen.poster_detail_width, R.dimen.poster_detail_height)
+            .into(binding.detailPoster)
     }
 
     override fun clickFloatingButton() {

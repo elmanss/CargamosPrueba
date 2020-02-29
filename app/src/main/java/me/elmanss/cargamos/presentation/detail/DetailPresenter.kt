@@ -1,11 +1,9 @@
 package me.elmanss.cargamos.presentation.detail
 
-import android.content.SharedPreferences
-import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import me.elmanss.cargamos.domain.interactor.LocalMovieInteractor
+import me.elmanss.cargamos.domain.interactor.DetailInteractor
 import me.elmanss.cargamos.domain.models.MovieModel
 import me.elmanss.cargamos.util.Constants
 
@@ -19,17 +17,15 @@ interface DetailPresenter {
 }
 
 class DetailPresenterImpl(
-    val interactor: LocalMovieInteractor,
-    val preferences: SharedPreferences,
-    val gson: Gson,
+    val interactor: DetailInteractor,
     val view: DetailView
 ) :
     DetailPresenter {
     override fun getPosterUrl(path: String): String {
-        val base = preferences.getString(Constants.KEY_SECURE_URL, "")
-        val str = preferences.getString(Constants.KEY_POSTER_SIZES, "")!!
-        val sizes = gson.fromJson(str, Array<String>::class.java).asList()
-        return base + sizes[sizes.lastIndex - 2] + path
+        val base = interactor.getConfig().baseUrl
+        val imgIndex = interactor.getConfig().imgSizes.lastIndex - 2
+        val size = interactor.getConfig().imgSizes[imgIndex]
+        return base + size + path
     }
 
     override fun saveMovie(model: MovieModel): Disposable {

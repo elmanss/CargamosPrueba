@@ -9,4 +9,5 @@
   <string name="txt_img_poster_big_desc">Imagen grande poster pelicula</string>
   <string name="txt_msg_detail_save">"La película se ha agregado a tus favoritas"</string>
   <string name="txt_msg_detail_delete">La película se ha eliminado de tus favoritas</string>
+  <string name="txt_splash_progress">Obteniendo configuración…</string>
 </resources>

@@ -1,5 +1,5 @@
 # CargamosPrueba
-Prueba tecnica Cargamos.com
+Prueba técnica Cargamos.com
 
 Este aplicativo es una prueba técnica para evaluación por parte de Cargamos.com, el proyecto consiste en un catálogo de películas con scroll infinito, el cual al hacer clic lanza una vista con el detalle de la película seleccionada.
 

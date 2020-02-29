@@ -3,6 +3,7 @@ package me.elmanss.cargamos.presentation.list.main
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -61,7 +62,9 @@ class MainActivity : AppCompatActivity(),
 
         configList()
 
-        compDisposable.add(presenter.loadMoviesPaginated(1))
+        Handler().postDelayed({
+            compDisposable.add(presenter.loadMoviesPaginated(1))
+        }, 250)
     }
 
     override fun onDestroy() {

@@ -10,3 +10,9 @@ Al hacer clic el menú superior en la vista principal, el usuario puede acceder 
 Se usa el patrón Model-View-Presenter para separación de lógica de negocio, datos e interfaz gráfica. Las llamadas a Red, Base de datos, o preferencias se llevan a cabo por medio de Interactors, que mediante clases Mapper crean modelos de negocio a partir de las entidades obtenidas desde la capa de datos.
 
 Las llamadas a red y base de datos se llevan acabo exclusivamente usando RxJava con Retrofit y SqlDelight para Red y Base de datos, respectivamente.
+
+Para la implementación de infiniteScroll me apoyé en el siguiente artículo:
+https://www.nickmillward.com/android/2018/3/1/infinite-scrolling-with-recyclerview-and-unsplash-api
+
+Para hacer click en los elemento de recyclerView, se utiliza la clase ItemClickSupport, es abierta y está disponible en:
+https://www.littlerobots.nl/blog/Handle-Android-RecyclerView-Clicks/
